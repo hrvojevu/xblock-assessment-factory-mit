@@ -1,0 +1,8 @@
+# Ignore Python and XBlock related files
+*.pyc
+*.egg-info
+
+# Ignore Sass related files
+sass/
+.sass-cache/
+*.css.map
