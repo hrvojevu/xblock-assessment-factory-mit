@@ -1,8 +1,6 @@
-# Ignore Python and XBlock related files
 *.pyc
 *.egg-info
-
-# Ignore Sass related files
-sass/
-.sass-cache/
-*.css.map
+*.sass-cache
+*.sass-cache/*
+*.map
+assessment_factory/public/css/src/

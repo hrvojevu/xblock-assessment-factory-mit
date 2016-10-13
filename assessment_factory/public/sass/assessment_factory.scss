@@ -1,0 +1,97 @@
+@import "variables";
+
+div.assessment-factory-block{
+
+	.display-name{
+		margin: 10px auto;
+		padding: 10px auto;
+		font-size: 20px ;
+		text-align: center;
+		font-family: $font-main;
+		background-color: $gray-dark;
+		color: $alert;
+		border-radius: 5px;
+	}
+
+	.title{
+		margin: 10px auto;
+		font-size: 20px ;
+		text-align: center;
+		font-family: $font-main;
+		background-color: $blue;
+		border-radius: 5px;
+	}
+
+	.items-container{
+
+		.item-text{
+			width: 150px;
+			padding: 5px;
+			border: 2px solid gray;
+			box-sizing: border-box;
+			border-radius: 5px;
+			text-align: center;
+			display: inline-block;
+			background-color: $white;
+			cursor: pointer;
+			z-index: 10;
+			opacity: 1;
+			margin-top: 0;
+		}
+
+		.item-image{
+			width: 400px;
+			height: 200px;
+			background-color: $white;
+			border-radius: 5px;
+			margin: 5px 0;
+			cursor: pointer;
+			z-index: 10;
+			opacity: 1;
+		}
+
+		.incorrect-item{
+			border: 2px solid $alert;
+		}
+		.correct-item{
+			border: 2px solid $success;
+		}	
+	}
+
+	.categories-container{
+
+		.category-text{
+			line-height: 50px;
+			margin-bottom: 20px;
+
+			.zone{
+				display: inline-block;
+				background-color: $gray-light;
+				width: 200px;
+				height: 50px;
+			}
+		}
+
+		.category-image{
+			width: 800px;
+			height: 400px;
+			background-size:cover;
+			position: relative;
+
+			.image-zone{
+				background-color: rgba(0,0,0,0.5);
+				border: 2px dashed #ddd;
+			}
+		}
+	}
+
+	.other-container{
+		margin-top: 20px;
+
+		i{
+			margin-right: 20px;
+			font-style: normal;
+			cursor: pointer;
+		}
+	}
+}

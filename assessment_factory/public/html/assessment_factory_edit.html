@@ -1,0 +1,144 @@
+{% load i18n %}
+{% load l10n %}
+
+<div class="xblock--assessment-factory--editor editor-with-buttons">
+  <section class="drag-builder">
+    <div class="tab feedback-tab">
+      <div id="assessment-factory-tab-container">
+        <ul>
+          <li><a href="#tabs-general">General Information</a></li>
+          <li><a href="#tabs-items">Item Management</a></li>
+          <li><a href="#tabs-categories">Category Management</a></li>
+        </ul>
+
+        <div id="tabs-general" class="tabs">
+          <p class="tab-content">
+            {% trans "Note: do not edit the problem if students have already completed it. Delete the problem and create a new one." %}
+          </p>
+
+          <label class="h3" for="weight">{% trans "Maximum score" %}</label>
+          <input id="weight" type="number" step="0.1" value="{{ weight|unlocalize }}" />
+          <br>
+          <br>
+          <label class="h3" for="has-score">{% trans "Score problem" %}</label>
+          <input id="has-score" type="checkbox" {% if has_score %}checked{% endif %}>
+          <br>
+          <br>
+          <label class="h3" for="allow-reset">{% trans "Allow student to reset problem" %}</label>
+          <input id="allow-reset" type="checkbox" {% if allow_reset %}checked{% endif %}>
+          <br>
+          <br>
+          <label class="h3" for="allow-check">{% trans "Allow student to check problem correctness" %}</label>
+          <input id="allow-check" type="checkbox" {% if allow_check %}checked{% endif %}>
+          <br>
+          <br>
+          <label class="h3" for="set-retry-count">{% trans "Retry count" %}</label>
+          <input id="set-retry-count" type="number" step="1" value="{{ set_retry_count|unlocalize }}" />
+        </div>
+
+        <div id="tabs-items" class="tabs">
+          {% for item in studio_assignment.items %}
+            <div class="item-category-content item">
+              <div class="general-container">
+                <p>Item ID</p>
+                <input class="value-input" type="text" value="{{ item.id }}" placeholder="ID">
+                <br>
+                <p>Item Type</p>
+                <select class="item-type-select">
+
+                {% if item.type == "text" %}
+                      <option selected="selected" value="text">Text</option>
+                      <option value="image">Image</option>
+                    </select>
+                  </div>
+
+                  <div class="value-container item-value">
+                    <p>Item Value</p>
+                    <input class="value-input" type="text" placeholder="Value" value="{{ item.value }}" />
+                {% elif item.type == "image" %}
+                      <option value="text">Text</option>
+                      <option selected="selected" value="image">Image</option>
+                    </select>
+                  </div>
+                <div class="value-container item-value">
+                  <p>Item Value</p>
+                  <input class="image-url" type="text" placeholder="Image URL" value="{{ item.value }}"/>
+                  <button class="af-btn preview-asset-image">Preview</button>
+                  <div class="preview-image" style="height: 200px; width: 400px; background-image: url('{{ item.value }}'); background-size: cover;"></div>
+                {% endif %}
+                    </div>
+                    <div style="clear:both"></div>
+                  </div>
+            {% endfor %}
+
+            <button class="af-btn add-item">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              <i>Add Item</i>
+            </button>   
+        </div>
+
+        <div id="tabs-categories" class="tabs">
+          {% for category in studio_assignment.categories %}
+              <div class="item-category-content category">
+                <div class="general-container">
+                  <p>Category ID</p>
+                  <input class="value-input" type="text" value="{{ category.id }}" placeholder="ID">
+                  <br>
+                  <p>Category Type</p>
+                  <select class="category-type-select">
+
+                  {% if category.type == "text" %}
+                        <option selected="selected" value="text">Text</option>
+                        <option value="image">Image</option>
+                      </select>
+                    </div>
+                    <div class="value-container category-value">
+                      <p>Value</p>
+                      <textarea class="value-input" rows="4" placeholder="Value">{{ category.value }}</textarea>
+                    {% elif category.type == "image" %}
+                          <option value="text">Text</option>
+                          <option selected="selected" value="image">Image</option>
+                        </select>
+                      </div>
+
+                      <div class="value-container category-value">
+                        <p>Category Value</p>
+                        <input class="image-url" type="text" placeholder="Image URL" value="{{ category.value }}" />
+                        <button class="af-btn preview-asset-image">Preview</button>
+                        <div class="preview-image" style="height: 400px; width: 800px; background-image: url('{{ category.value }}'); background-size: cover;">
+                          {% for zone in category.zones %}
+                            <div class="category-zone" style="{{ zone.style }}">
+                              <i class="fa fa-times-circle remove-zone" aria-hidden="true"></i>
+                              <input class="zone-id" type="text" placeholder="Zone ID" value="{{ zone.id }}">
+                              <input class="zone-item" type="text" placeholder="Item ID" value="{{ zone.item }}">
+                            </div>
+                          {% endfor %}
+                        </div>
+                    {% endif %}
+                  </div>
+                  <div style="clear:both"></div>
+              </div>
+          {% endfor %}
+
+          <button class="af-btn add-category">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>
+              <i>Add Category</i>
+          </button>  
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="xblock-actions">
+    <span class="xblock-editor-error-message"></span>
+    <ul>
+      <li class="action-item hidden">
+        <a href="#" class="button action-primary save-button">{% trans "Save" %}</a>
+      </li>
+      <li class="action-item">
+        <a href="#" class="button cancel-button">{% trans "Cancel" %}</a>
+      </li>
+    </ul>
+  </div>
+
+</div>
