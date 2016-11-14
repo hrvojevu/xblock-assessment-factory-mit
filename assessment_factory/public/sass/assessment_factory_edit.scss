@@ -1,0 +1,141 @@
+@import "variables";
+
+[class*="view-"] .modal-lg.modal-editor .modal-content{
+	height: auto;
+	min-height: 500px;;
+}
+
+[class*="view-"] .modal-lg{
+	top: 50px !important;
+}
+
+
+.studio-error-message{
+	padding: 10px;
+    background: $alert;
+}
+
+#assessment-factory-tab-container{
+	border: none;
+	.ui-tabs{
+		padding: 0;	
+	}
+
+	.item-category-content{
+		margin-bottom: 20px;
+		padding: 10px;
+		background: $gray-light;
+		margin-right: 20px;
+
+		p{
+			margin-top: 10px;
+			margin-bottom: 0;
+		}
+
+		textarea{
+			padding: 5px;
+			width: 400px;
+			resize: vertical;
+		}
+
+		.general-container{
+			float: left;
+			margin-right: 20px;
+		}
+
+
+		.value-container{
+			float: left;
+
+			.fileupload{
+			    -moz-opacity: 0;
+			    opacity: 0;
+			    width: 0;
+			    height: 0;
+			    cursor: pointer;
+			}
+
+			button{
+				width: 125px;
+				cursor: pointer;
+				font-size: 14px;
+			}
+
+			.preview-image{
+				margin: 10px 5px;
+				position: relative;
+
+				.ui-icon{
+					background: none;
+				}
+
+				&:hover{
+
+					.ui-icon{	
+						bottom: -3px;
+						right: -3px;
+					}
+					.ui-resizable-e{
+						right: -4px;
+					}
+					.ui-resizable-s{
+						bottom: -4px;
+					}
+				}
+
+				.image-category-instructions{
+					text-align: center;
+					font-size: 20px;
+					text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+					color: $white;
+				}
+
+				.category-zone{
+					background-color: rgba(102, 102, 102, 0.5);
+            		border: 1px dashed $white;
+            		cursor: pointer;
+
+            		.remove-zone{
+						color: $white;
+						position: relative;
+						font-size: 16px;
+						top: 3px;
+						left: 3px;
+						cursor: pointer;
+            		}
+            		.zone-item, .zone-id{
+						width: 90px;
+						height: 20px;
+						font-size: 14px;
+						display: block;
+						margin: 5px;
+						padding: 3px;
+            		}
+				}
+			}
+		}
+
+		.remove-button{
+			width: 70px;
+			background: $gray-dark;
+			border: 2px solid $gray;
+			color: $gray;
+    		border-radius: 3px;
+			margin-top: 20px;
+			text-align: center;
+			cursor: pointer;
+		}
+	}
+
+	.af-btn{
+		cursor: pointer;
+		clear: both;
+		width: 150px;
+		background: $blue;
+		border: 2px solid $gray-light;
+		border-radius: 3px;
+		padding: 5px;
+		text-align: center;
+		color: $gray-light;
+	}
+}

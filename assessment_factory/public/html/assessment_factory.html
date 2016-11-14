@@ -1,5 +1,22 @@
-<div class="assessment_factory_block">
-<p>AssessmentFactoryXBlock: count is now
-    <span class='count'>{self.count}</span> (click me to increment).
-</p>
+<div class="assessment-factory-block">
+<div class="display-name">{{ display_name }}</div>
+	<div class="items-container">
+		<div class="title">Items</div>
+	</div>
+
+	<div class="categories-container">
+		<div class="title">Categories</div>
+	</div>
+
+	<div class="other-container">
+		{% if allow_reset %}
+			<i class="reset">Reset</i>
+		{% endif %}
+		{% if allow_check %}
+			<i class="check">Check ({{ retry_count }} left)</i>
+		{% endif %}
+		{% if not is_graded and has_score %}
+			<i class="submit">Submit</i>
+		{% endif %}
+	</div>
 </div>
