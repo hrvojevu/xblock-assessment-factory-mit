@@ -136,6 +136,8 @@ class AssessmentFactoryXBlock(XBlock):
         The primary view of the AssessmentFactoryXBlock, shown to students
         when viewing courses.
         """
+        self.runtime.publish(self, 'edx.assessment_factory.problem.loaded', {})
+
         if not self.problem_active:
             self.problem_active = True
             self.retry_count = self.set_retry_count
@@ -163,6 +165,16 @@ class AssessmentFactoryXBlock(XBlock):
         return frag
 
     @XBlock.json_handler
+    def publish_event(self, data, suffix=''):
+        try:
+            event_type = data.pop('event_type')
+        except KeyError:
+            return {'result': 'error', 'message': 'Missing event_type in JSON data'}
+
+        self.runtime.publish(self, event_type, data)
+        return {'result': 'success'}
+
+    @XBlock.json_handler
     def studio_submit(self, data, suffix=''):
         self.weight = float(data.get('weight'))
         self.has_score = data.get('has_score')
@@ -176,13 +188,12 @@ class AssessmentFactoryXBlock(XBlock):
     @XBlock.json_handler
     def submit_item(self, data, suffix=''):
         item_id = data.get("item_id")
-        item_info = {
+        self.item_state[item_id] = data;
+        self.runtime.publish(self, 'edx.assessment_factory.item.dropped', {
             "item_id": item_id,
             "category_id": data.get("category_id"),
-            "zone_id": data.get("zone_id"),
-            "style": data.get("style"),
-        }
-        self.item_state[item_id] = item_info;
+            "zone_id": data.get("zone_id")
+        })
 
         return {'result': 'success'}
 
@@ -193,6 +204,9 @@ class AssessmentFactoryXBlock(XBlock):
         self.incorrect_items = []
         self.retry_count = self.set_retry_count
         self.problem_active = False
+        
+        self.runtime.publish(self, 'edx.assessment_factory.problem.reset', {})
+
         return {
             'studio_assignment': self.studio_assignment,
             'item_state': self.item_state,
@@ -208,6 +222,11 @@ class AssessmentFactoryXBlock(XBlock):
                     self.retry_count -= 1
                     self.incorrect_items = data['incorrect_items']
                     self.correct_items = data['correct_items']
+
+                    self.runtime.publish(self, 'edx.assessment_factory.problem.checked', {
+                        "incorrect_items": data['incorrect_items'],
+                        "correct_items": data['correct_items']
+                    })
                                 
         return {
             'incorrect_items': data['incorrect_items'],
