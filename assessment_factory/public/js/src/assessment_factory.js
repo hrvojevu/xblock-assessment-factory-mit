@@ -83,6 +83,10 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
             revert: 'invalid',
             revertDuration: 200,
             start: function( event, ui ) {
+                publishEvent({
+                    event_type: 'edx.assessment_factory.item.picked_up',
+                    item_id: event.target.id,
+                });
             }                
         });
     }
@@ -91,10 +95,19 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
         $(".categories-container .zone").droppable({
             tolerance: 'fit',
             drop: function( event, ui ) {
-                submitItem(ui.draggable[0].id, $(event.target).parent().attr('id'), event.target.id);
+                var item_id = ui.draggable[0].id;
+                submitItem(item_id, $(event.target).parent().attr('id'), event.target.id);
             }
         });
     }
+
+    function publishEvent(data) {
+        $.ajax({
+            type: 'POST',
+            url: runtime.handlerUrl(element, 'publish_event'),
+            data: JSON.stringify(data)
+        });
+    };
 
     $(function ($) {
         renderElements(ctx);
