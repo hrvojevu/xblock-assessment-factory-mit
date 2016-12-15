@@ -65,6 +65,8 @@
                   <button class="af-btn preview-asset-image">{% trans "Preview" %}</button>
                   <div class="preview-image" style="height: 200px; width: 400px; background-image: url('{{ item.value }}'); background-size: cover;"></div>
                 {% endif %}
+                    <p>{% trans "Zone ID" %}</p>
+                    <input class="zone-id" type="text" placeholder="Zone ID" value="{{ item.zone_id }}">
                     </div>
                     <div style="clear:both"></div>
                   </div>
@@ -77,46 +79,64 @@
         </div>
 
         <div id="tabs-categories" class="tabs">
+          <p>{% trans "Note: Zone ID's must be unique!" %}</p>
           {% for category in studio_assignment.categories %}
-              <div class="item-category-content category">
-                <div class="general-container">
-                  <p>{% trans "Category ID" %}</p>
-                  <input class="value-input" type="text" value="{{ category.id }}" placeholder="ID">
-                  <br>
-                  <p>{% trans "Category Type" %}</p>
-                  <select class="category-type-select">
+            <div class="item-category-content category">
+              <div class="general-container">
+                <p>{% trans "Category ID" %}</p>
+                <input class="value-input" type="text" value="{{ category.id }}" placeholder="ID">
+                <br>
+                <p>{% trans "Category Type" %}</p>
+                <select class="category-type-select">
 
-                  {% if category.type == "text" %}
-                        <option selected="selected" value="text">{% trans "Text" %}</option>
-                        <option value="image">{% trans "Image" %}</option>
-                      </select>
-                    </div>
-                    <div class="value-container category-value">
-                      <p>{% trans "Value" %}</p>
-                      <textarea class="value-input" rows="4" placeholder="Value">{{ category.value }}</textarea>
-                    {% elif category.type == "image" %}
-                          <option value="text">{% trans "Text" %}</option>
-                          <option selected="selected" value="image">{% trans "Image" %}</option>
-                        </select>
-                      </div>
-
-                      <div class="value-container category-value">
-                        <p>{% trans "Category Value" %}</p>
-                        <input class="image-url" type="text" placeholder="Image URL" value="{{ category.value }}" />
-                        <button class="af-btn preview-asset-image">{% trans "Preview" %}</button>
-                        <div class="preview-image" style="height: 400px; width: 800px; background-image: url('{{ category.value }}'); background-size: cover;">
-                          {% for zone in category.zones %}
-                            <div class="category-zone" style="{{ zone.style }}">
-                              <i class="fa fa-times-circle remove-zone" aria-hidden="true"></i>
-                              <input class="zone-id" type="text" placeholder="Zone ID" value="{{ zone.id }}">
-                              <input class="zone-item" type="text" placeholder="Item ID" value="{{ zone.item }}">
-                            </div>
-                          {% endfor %}
-                        </div>
-                    {% endif %}
+                {% if category.type == "text" %}
+                      <option selected="selected" value="text">{% trans "Text" %}</option>
+                      <option value="image">{% trans "Image" %}</option>
+                      <option value="blank">{% trans "Blank" %}</option>
+                    </select>
                   </div>
-                  <div style="clear:both"></div>
-              </div>
+                  <div class="value-container category-value">
+                    <p>{% trans "Value" %}</p>
+                    <textarea class="value-input" rows="4" placeholder="Value">{{ category.value }}</textarea>
+                {% elif category.type == "image" %}
+                      <option value="text">{% trans "Text" %}</option>
+                      <option selected="selected" value="image">{% trans "Image" %}</option>
+                      <option value="blank">{% trans "Blank" %}</option>
+                    </select>
+                  </div>
+                
+                    <div class="value-container category-value">
+                      <p>{% trans "Category Value" %}</p>
+                      <input class="image-url" type="text" placeholder="Image URL" value="{{ category.value }}" />
+                      <button class="af-btn preview-asset-image">{% trans "Preview" %}</button>
+                      <div class="preview-image" style="height: 400px; width: 800px; background-image: url('{{ category.value }}'); background-size: cover;">
+                        {% for zone in category.zones %}
+                          <div class="category-zone" style="{{ zone.style }}">
+                            <i class="fa fa-times-circle remove-zone" aria-hidden="true"></i>
+                            <input class="zone-id" type="text" placeholder="Zone ID" value="{{ zone.id }}">
+                          </div>
+                        {% endfor %}
+                      </div>
+                {% elif category.type == "blank" %}
+                      <option value="text">{% trans "Text" %}</option>
+                      <option value="image">{% trans "Image" %}</option>
+                      <option selected="selected" value="blank">{% trans "Blank" %}</option>
+                    </select>
+                  </div>
+                  <div class="value-container category-value">
+                    {% for zone in category.zones %}
+                      <p>{% trans "Zone ID" %}</p>
+                      <input class="zone-id" type="text" placeholder="Zone ID" value="{{ zone.id }}">
+                      <p>{% trans "Zone Width (px)" %}</p>
+                      <input class="zone-width" type="number" placeholder="Width" value="{{ zone.width }}">
+                      <p>{% trans "Category Height (px)" %}</p>
+                      <input class="zone-height" type="number" placeholder="Height" value="{{ zone.height }}">
+                    {% endfor %}
+
+                {% endif %}
+                </div>
+                <div style="clear:both"></div>
+            </div>
           {% endfor %}
 
           <button class="af-btn add-category">

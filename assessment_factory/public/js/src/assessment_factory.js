@@ -147,7 +147,7 @@ function renderElements(ctx){
 
                 for(var i in ctx.studio_assignment.categories[key]['zones']){
                     var zone = ctx.studio_assignment.categories[key]['zones'][i];
-                    value = value.replace("$$"+zone['id']+";"+zone['item']+"$$","<span id='" + zone['id'] + "' class='zone'></span>");
+                    value = value.replace("$$"+zone['id']+"$$","<span id='" + zone['id'] + "' class='zone'></span>");
                 }
                 var $element = $("<p id='" + ctx.studio_assignment.categories[key]['id'] + "'></p>").addClass("category category-text").html(value);
             }
@@ -159,6 +159,15 @@ function renderElements(ctx){
                 for(var i in ctx.studio_assignment.categories[key]['zones']){
                     var zone = ctx.studio_assignment.categories[key]['zones'][i];
                     var $zone_element = $("<div id='" + zone['id'] + "' style='" + zone['style'] + "'></div>").addClass("zone image-zone");
+                    $element.append($zone_element);
+                }
+            }
+            else if(ctx.studio_assignment.categories[key]['type'] == "blank"){
+                var $element = $("<div id='" + ctx.studio_assignment.categories[key]['id'] + "'></div>").addClass("category category-blank");
+
+                for(var i in ctx.studio_assignment.categories[key]['zones']){
+                    var zone = ctx.studio_assignment.categories[key]['zones'][i];
+                    var $zone_element = $("<div id='" + zone['id'] + "' style='width:" + zone['width'] + "px;height:" + zone['height'] + "px'></div>").addClass("zone image-zone");
                     $element.append($zone_element);
                 }
             }
