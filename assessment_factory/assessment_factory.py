@@ -263,14 +263,13 @@ class AssessmentFactoryXBlock(XBlock):
     def _get_correct_incorrect_items(self):
         incorrect_items = []
         correct_items = []
-        for category in self.studio_assignment['categories']:
-            for zone in category['zones']:
-                if zone['item'] in self.item_state:
-                    item_id = zone['item']
-                    if self.item_state[item_id]['category_id'] == category['id'] and self.item_state[item_id]['zone_id'] == zone['id']:
-                            correct_items.append(item_id)
-                    else:
-                        incorrect_items.append(item_id)
+        for item in self.studio_assignment['items']:
+            if item['id'] in self.item_state:
+                item_id = item['id']
+                if self.item_state[item_id]['zone_id'] == item['zone_id']:
+                    correct_items.append(item_id)
+                else:
+                    incorrect_items.append(item_id)
         return{
             'incorrect_items': incorrect_items,
             'correct_items': correct_items

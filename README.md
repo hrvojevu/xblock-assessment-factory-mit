@@ -39,13 +39,15 @@ $ make compile-sass
 
 Usage
 -------
-This XBlock is combined of three main parts: items, categories and zones. Items and categories type can be "text" or "image". When creating items inside "Item Management" tab, it is necessary to add unique item id and, depending on item type, value which can be text (for "text" item) or URL (for "image" item). When creating categories inside "Category Management" tab, it is also necessary to add unique category id and, depending on type, value. Since categories contain zones in which items will be dropped, depending on category type, there is two ways of adding zones. 
-* If a category type is "text", zone is added inside text block by adding following structure $$zone_id;item_id$$ to mark zone with it's item. Example:
+This XBlock is combined of three main parts: items, categories and zones. Items are created inside "Item Management" tab. When creating items it is necessary to add unique item id, select item type and value which can be plain text (for "text" item) or URL (for "image" item), depending on the item type. Categories are created inside "Category Management" tab. When creating categories it is necessary to add category id and, type and value. Category type can be "text", "image" and "blank". Since categories contain zones in which items will be dropped, depending on category type, there is three ways of adding zones
+* If the category type is "text", zone is added inside text block by adding following structure $$zone_id$$ to mark zone. Example:
 
 ```bash
-Lorem ipsum $$zone-1;item-1$$ sit amet, consectetur adipiscing elit. Nam ac sem dictum, congue elit non, lacinia est. Nulla pretium arcu $$zone-2;item-2$$, eu pretium leo convallis at.
+Lorem ipsum $$zone-1$$ sit amet, consectetur adipiscing elit. Nam $$zone-2$$, eu pretium leo convallis at.
 ```
-* If a category type is "image", zone is added by double clicking on the category image. When double clicked, zone box will appear with input fields for item and zone id. Zone box can be resized and dragged.
+* If the category type is "image", zone is added by double clicking on the category image. When double clicked, zone box will appear with input fields for zone id. Zone box can be resized and dragged.
+* If the If the category type is "blank", zone is marked with id, width and height which are needed to define the zone.
+** Note: Zone ID's must be unique!
 
 
 License
