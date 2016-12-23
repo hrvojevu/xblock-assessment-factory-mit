@@ -1,27 +1,10 @@
 {% load i18n %}
 
 <div class="assessment-factory-block">
-<div class="display-name">{{ display_name }}</div>
-	<div class="items-container">
-		<div class="title">{% trans "Items" %}</div>
+	<div class="main-container clearfix">
+		<div class="heading-container"></div>
+		<div class="items-container"></div>
+		<div class="categories-container"></div>
 	</div>
-
-	<div class="categories-container">
-		<div class="title">{% trans "Categories" %}</div>
-	</div>
-
-	<div class="other-container">
-		{% if allow_reset %}
-			<i class="reset">{% trans "Reset" %}</i>
-		{% endif %}
-		{% if allow_check %}
-			<i class="check">
-				{% blocktrans with retry_count=retry_count %}
-					Check ({{retry_count}} left)
-				{% endblocktrans %}</i>
-		{% endif %}
-		{% if not is_graded and has_score %}
-			<i class="submit">{% trans "Submit" %}</i>
-		{% endif %}
-	</div>
+	<div class="steps-progress-container"></div>
 </div>

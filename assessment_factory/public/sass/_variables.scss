@@ -1,13 +1,19 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300);
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700');
+@import url('https://fonts.googleapis.com/css?family=Hind:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 $black: #3c3c3c;
 $white: #fff;
 $gray-dark: #666;
 $gray: #DDDDDD;
 $gray-light: #eee;
-$blue: #007fff;
-$success: #3c763d;
-$success-light: #dff0d8;
-$alert: #fe2e2e;;
 
-$font-main: 'Source Sans Pro', sans-serif;
+$blue: #48ada7;
+$success: #8ea54d;
+$alert: #870c0e;
+$main: #84555b;
+$main-dark: #684146;
+
+$font-alt: 'Roboto', sans-serif;
+$font-main: 'Hind', sans-serif;
+$font-serif: 'Lora', serif;
