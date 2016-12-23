@@ -11,6 +11,11 @@
 	clear: both;
 	height: 0;
 }
+
+.xblock-render div.assessment-factory-block{
+	position: relative;
+}
+
 div.assessment-factory-block{
 	background: url("https://s3.amazonaws.com/mit-cre-assets/background_images/dnd_background_overlay.jpg");
 	position: fixed;
