@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css?family=Lora:400,700");
+@import url("https://fonts.googleapis.com/css?family=Hind:400,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+.expand-container {
+  width: 100% !important;
+  max-width: 100% !important; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  content: "";
+  clear: both;
+  height: 0; }
+
+div.assessment-factory-block {
+  background: url("https://s3.amazonaws.com/mit-cre-assets/background_images/dnd_background_overlay.jpg");
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+  div.assessment-factory-block .main-container {
+    padding: 50px 100px; }
+    div.assessment-factory-block .main-container .btn {
+      color: #fff;
+      text-transform: uppercase;
+      border: 1px solid #fff;
+      width: 180px;
+      text-align: center;
+      padding: 10px;
+      font-size: 22px;
+      margin: 0 auto;
+      -webkit-transition: all 100ms linear;
+      -moz-transition: all 100ms linear;
+      -o-transition: all 100ms linear;
+      -ms-transition: all 100ms linear;
+      transition: all 100ms linear; }
+      div.assessment-factory-block .main-container .btn:hover {
+        cursor: pointer;
+        background-color: #fff;
+        color: #3c3c3c; }
+    div.assessment-factory-block .main-container .btn.begin {
+      margin-top: 50px; }
+    div.assessment-factory-block .main-container .heading-container {
+      color: #fff; }
+      div.assessment-factory-block .main-container .heading-container .activity {
+        text-align: center;
+        font-size: 20px;
+        text-transform: uppercase;
+        text-decoration: underline; }
+      div.assessment-factory-block .main-container .heading-container .display-name {
+        font-size: 40px;
+        text-align: center;
+        font-family: "Lora", serif;
+        font-weight: bold; }
+      div.assessment-factory-block .main-container .heading-container .display-name.left {
+        font-size: 48px;
+        text-align: left; }
+      div.assessment-factory-block .main-container .heading-container .category-text {
+        font-size: 22px;
+        margin: 40px 0;
+        font-family: "Hind", sans-serif; }
+        div.assessment-factory-block .main-container .heading-container .category-text span {
+          font-weight: 700; }
+    div.assessment-factory-block .main-container .heading-container.begining {
+      margin-top: 300px; }
+    div.assessment-factory-block .main-container .scrollbar::-webkit-scrollbar, div.assessment-factory-block .main-container .items-container::-webkit-scrollbar, div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone::-webkit-scrollbar {
+      width: 10px; }
+    div.assessment-factory-block .main-container .scrollbar::-webkit-scrollbar-track, div.assessment-factory-block .main-container .items-container::-webkit-scrollbar-track, div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone::-webkit-scrollbar-track {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 5px; }
+    div.assessment-factory-block .main-container .scrollbar::-webkit-scrollbar-thumb, div.assessment-factory-block .main-container .items-container::-webkit-scrollbar-thumb, div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      margin: 3px;
+      background: rgba(255, 255, 255, 0.9); }
+    div.assessment-factory-block .main-container .scrollbar::-webkit-scrollbar-thumb:window-inactive, div.assessment-factory-block .main-container .items-container::-webkit-scrollbar-thumb:window-inactive, div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone::-webkit-scrollbar-thumb:window-inactive {
+      background: rgba(255, 255, 255, 0.4); }
+    div.assessment-factory-block .main-container .items-container {
+      float: left;
+      width: 33%;
+      max-width: 450px;
+      margin-top: 40px;
+      overflow-y: scroll;
+      height: 420px;
+      padding: 5px; }
+    div.assessment-factory-block .main-container .item-text {
+      width: 100%;
+      max-width: 500px;
+      margin: 10px auto;
+      padding: 5px 10px;
+      font-size: 18px;
+      display: block;
+      background-color: #48ada7;
+      color: #fff;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 1;
+      margin-top: 0; }
+    div.assessment-factory-block .main-container .item-image {
+      width: 400px;
+      height: 200px;
+      background-color: #fff;
+      border-radius: 5px;
+      margin: 5px 0;
+      cursor: pointer;
+      z-index: 10;
+      opacity: 1; }
+    div.assessment-factory-block .main-container .incorrect-item {
+      background-color: #870c0e; }
+    div.assessment-factory-block .main-container .correct-item {
+      background-color: #8ea54d; }
+    div.assessment-factory-block .main-container .categories-container {
+      float: right;
+      width: 66%; }
+      div.assessment-factory-block .main-container .categories-container .category-text {
+        line-height: 50px;
+        margin-bottom: 20px; }
+        div.assessment-factory-block .main-container .categories-container .category-text .zone {
+          display: inline-block;
+          background-color: #eee;
+          width: 200px;
+          height: 50px; }
+      div.assessment-factory-block .main-container .categories-container .category-image {
+        width: 800px;
+        height: 400px;
+        background-size: cover;
+        position: relative; }
+        div.assessment-factory-block .main-container .categories-container .category-image .image-zone {
+          background-color: rgba(0, 0, 0, 0.5);
+          border: 2px dashed #ddd; }
+      div.assessment-factory-block .main-container .categories-container .category-blank .zone-container {
+        width: calc(50% - 10px);
+        margin: 0;
+        float: left; }
+        div.assessment-factory-block .main-container .categories-container .category-blank .zone-container:first-child {
+          margin-right: 20px; }
+        div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .zone-name {
+          padding: 5px;
+          font-size: 20px;
+          color: #fff; }
+        div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone {
+          -webkit-box-shadow: inset 0px 0px 70px 0px #684146;
+          -moz-box-shadow: inset 0px 0px 70px 0px #684146;
+          box-shadow: inset 0px 0px 70px 0px #684146;
+          background-color: #84555b;
+          height: 400px;
+          padding: 10px;
+          box-sizing: content-box;
+          overflow-y: scroll; }
+    div.assessment-factory-block .main-container .steps-container {
+      clear: both;
+      float: right;
+      margin-top: 40px; }
+      div.assessment-factory-block .main-container .steps-container .btn {
+        float: left;
+        font-family: "Hind", sans-serif; }
+        div.assessment-factory-block .main-container .steps-container .btn:first-child {
+          margin-right: 20px; }
+  div.assessment-factory-block .steps-progress-container {
+    width: 100%;
+    height: 7px;
+    position: fixed;
+    bottom: 0;
+    left: 0; }
+    div.assessment-factory-block .steps-progress-container .step {
+      background: rgba(255, 255, 255, 0.3);
+      height: 7px;
+      float: left;
+      margin: 0 2px; }
+    div.assessment-factory-block .steps-progress-container .highlight-step {
+      background: #fff; }
+
+@media screen and (max-height: 768px) {
+  div.assessment-factory-block .main-container .heading-container.begining {
+    margin-top: 150px; }
+
+  div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone {
+    height: 250px; }
+
+  div.assessment-factory-block .main-container .items-container {
+    height: 270px; } }
+
+/*# sourceMappingURL=assessment_factory.css.map */
