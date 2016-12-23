@@ -10,7 +10,6 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
                         '<div class="general-container">' + 
                             '<p>Item ID</p>' +
                             '<input class="value-input" type="text" placeholder="ID">' +
-                            '<br>' +
                             '<p>Item Type</p>' +
                             '<select class="item-type-select">' +
                                 '<option selected="selected" value="text">Text</option>' +
@@ -20,6 +19,8 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
                         '<div class="value-container item-value">' +
                             '<p>Item Value</p>' +
                             '<input class="value-input" type="text" placeholder="Value">' +
+                            '<p>Category ID</p>' +
+                            '<input class="category-id" type="text" placeholder="Category ID">' +
                             '<p>Zone ID</p>' +
                             '<input class="zone-id" type="text" placeholder="Zone ID">' +
                         '</div>' +
@@ -35,7 +36,8 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
                         '<div class="general-container">' +
                             '<p>Category ID</p>' +
                             '<input class="value-input" type="text" value="" placeholder="ID">' +
-                            '<br>' +
+                            '<p>Category Name</p>' +
+                            '<input class="category-name" type="text" value="" placeholder="Name">' +
                             '<p>Category Type</p>' +
                             '<select class="category-type-select">' +
                                 '<option selected="selected" value="text">Text</option>' +
@@ -60,10 +62,9 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
         if(validation.is_valid){
             var el = $(element);
             var data = {
+                display_name: el.find('input[id=display-name]').val(),
                 weight: el.find('input[id=weight]').val(),
                 has_score: (document.getElementById("has-score").checked ? true : false),
-                allow_reset: (document.getElementById("allow-reset").checked ? true : false),
-                allow_check: (document.getElementById("allow-check").checked ? true : false),
                 set_retry_count: el.find('input[id=set-retry-count]').val(),
                 items: [],
                 categories: [],
@@ -80,6 +81,7 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
                         item.type = "image";
                         item.value = $(this).find(".value-container .image-url").val();
                     }
+                    item.category_id = $(this).find(".value-container .category-id").val();
                     item.zone_id = $(this).find(".value-container .zone-id").val();
                     data.items.push(item)
                 }
@@ -88,6 +90,8 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
                         zones: [],
                     };
                     category.id = $(this).find(".general-container .value-input").val();
+                    category.name = $(this).find(".general-container .category-name").val();
+                    category.text = $(this).find(".general-container .category-text").val();
                     if($(this).find(".general-container .category-type-select option:selected").val() == "text"){
                         category.type = "text";
                         var value = $(this).find(".value-container .value-input").val();
@@ -113,11 +117,14 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
                     }
                     else if($(this).find(".general-container .category-type-select option:selected").val() == "blank"){
                         category.type = "blank";
-                        var zone = {};
-                        zone.id = $(this).find(".zone-id").val();
-                        zone.width = $(this).find(".zone-width").val();
-                        zone.height = $(this).find(".zone-height").val();
-                        category.zones.push(zone);
+                        $(this).find(".value-container").each(function () {  
+                            var zone = {};
+                            zone.name = $(this).find(".zone-name").val();
+                            zone.id = $(this).find(".zone-id").val();
+                            zone.width = $(this).find(".zone-width").val();
+                            zone.height = $(this).find(".zone-height").val();
+                            category.zones.push(zone);
+                        });
                     }
                     data.categories.push(category);
                 }
@@ -252,13 +259,16 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
             }
             else if(this.value == "blank"){
                 if($(this).hasClass("category-type-select")){
-                    $el.addClass("category-value");
-                    $el.append('<p>Zone ID</p>');
-                    $el.append('<input class="zone-id" type="text" placeholder="Zone ID">');
-                    $el.append('<p>Zone Width (px)</p>');
-                    $el.append('<input class="zone-width" type="number" placeholder="Width">');
-                    $el.append('<p>Category Height (px)</p>');
-                    $el.append('<input class="zone-height" type="number" placeholder="Height">');
+                    $el.remove();
+                    var $sibling = $(this).parent().parent().find(".general-container");
+                    var $div = ('<div class="value-container category-value">' +
+                                    '<p>Zone Name</p>' +
+                                    '<input class="zone-name" type="text" placeholder="Zone Name">' + 
+                                    '<p>Zone ID</p>' +
+                                    '<input class="zone-id" type="text" placeholder="Zone ID">' +
+                                '</div>');
+                    $sibling.after($div);
+                    $sibling.after($div);
                 }
             }
         });
@@ -306,7 +316,7 @@ function validateSubmit(){
             data.message = "One of your text areas are empty!"
             return false;
         }
-        else{
+        else if(!$(this).hasClass("category-text")){
             var value = $(this).val();
             var matches = regexItems(value);
             if(matches.length <= 0){

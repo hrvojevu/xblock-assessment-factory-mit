@@ -17,6 +17,12 @@
 
 #assessment-factory-tab-container{
 	border: none;
+
+	#tabs-items, #tabs-categories{
+		overflow-y: scroll;
+		max-height: 600px;
+	}
+
 	.ui-tabs{
 		padding: 0;	
 	}
@@ -26,7 +32,7 @@
 	    background-color: #f2f2f2;
 	    background-image: -webkit-linear-gradient(#f2f2f2,#fff);
 	    background-image: linear-gradient(#f2f2f2,#fff);
-	    padding: 8px 8px;
+	    padding: 0px 5px;
 	    border: 1px solid #b2b2b2;
 	    border-radius: 2px;
 	    background-color: #f2f2f2;
@@ -34,6 +40,18 @@
 	    font-family: 'Open Sans', sans-serif;
 	    color: #4c4c4c;
 	    outline: 0;
+	    margin-bottom: 5px;
+	    display: block;
+	}
+
+	input[type="checkbox"], input[type="radio"]{
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.item{
+		width: 560px;
+    	float: left;
 	}
 
 	.item-category-content{
@@ -61,6 +79,7 @@
 
 		.value-container{
 			float: left;
+			margin-right: 20px;
 
 			.fileupload{
 			    -moz-opacity: 0;
@@ -136,9 +155,10 @@
 			border: 2px solid $gray;
 			color: $gray;
     		border-radius: 3px;
-			margin-top: 20px;
 			text-align: center;
 			cursor: pointer;
+			font-size: 12px;
+			padding: 0;
 		}
 	}
 

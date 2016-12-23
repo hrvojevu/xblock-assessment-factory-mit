@@ -15,24 +15,17 @@
             {% trans "Note: do not edit the problem if students have already completed it. Delete the problem and create a new one." %}
           </p>
 
+          <label class="h3" for="display-name">{% trans "Display Name" %}</label>
+          <input id="display-name" type="text"value="{{ display_name }}" />
+
           <label class="h3" for="weight">{% trans "Maximum score" %}</label>
           <input id="weight" type="number" step="0.1" value="{{ weight }}" />
-          <br>
-          <br>
+
           <label class="h3" for="has-score">{% trans "Score problem" %}</label>
           <input id="has-score" type="checkbox" {% if has_score %}checked{% endif %}>
-          <br>
-          <br>
+
           <label class="h3" for="allow-reset">{% trans "Allow student to reset problem" %}</label>
           <input id="allow-reset" type="checkbox" {% if allow_reset %}checked{% endif %}>
-          <br>
-          <br>
-          <label class="h3" for="allow-check">{% trans "Allow student to check problem correctness" %}</label>
-          <input id="allow-check" type="checkbox" {% if allow_check %}checked{% endif %}>
-          <br>
-          <br>
-          <label class="h3" for="set-retry-count">{% trans "Retry count" %}</label>
-          <input id="set-retry-count" type="number" step="1" value="{{ set_retry_count }}" />
         </div>
 
         <div id="tabs-items" class="tabs">
@@ -41,7 +34,6 @@
               <div class="general-container">
                 <p>{% trans "Item ID" %}</p>
                 <input class="value-input" type="text" value="{{ item.id }}" placeholder="ID">
-                <br>
                 <p>{% trans "Item Type" %}</p>
                 <select class="item-type-select">
 
@@ -65,6 +57,8 @@
                   <button class="af-btn preview-asset-image">{% trans "Preview" %}</button>
                   <div class="preview-image" style="height: 200px; width: 400px; background-image: url('{{ item.value }}'); background-size: cover;"></div>
                 {% endif %}
+                    <p>{% trans "Category ID" %}</p>
+                    <input class="category-id" type="text" placeholder="Category ID" value="{{ item.category_id }}">
                     <p>{% trans "Zone ID" %}</p>
                     <input class="zone-id" type="text" placeholder="Zone ID" value="{{ item.zone_id }}">
                     </div>
@@ -85,7 +79,10 @@
               <div class="general-container">
                 <p>{% trans "Category ID" %}</p>
                 <input class="value-input" type="text" value="{{ category.id }}" placeholder="ID">
-                <br>
+                <p>{% trans "Category Name" %}</p>
+                <input class="category-name" type="text" value="{{ category.name }}" placeholder="Name">
+                <p>{% trans "Category Text" %}</p>
+                <textarea class="category-text" rows="3" placeholder="Value">{{ category.text }}</textarea>
                 <p>{% trans "Category Type" %}</p>
                 <select class="category-type-select">
 
@@ -98,6 +95,7 @@
                   <div class="value-container category-value">
                     <p>{% trans "Value" %}</p>
                     <textarea class="value-input" rows="4" placeholder="Value">{{ category.value }}</textarea>
+                  </div>
                 {% elif category.type == "image" %}
                       <option value="text">{% trans "Text" %}</option>
                       <option selected="selected" value="image">{% trans "Image" %}</option>
@@ -117,24 +115,22 @@
                           </div>
                         {% endfor %}
                       </div>
+                    </div>
                 {% elif category.type == "blank" %}
                       <option value="text">{% trans "Text" %}</option>
                       <option value="image">{% trans "Image" %}</option>
                       <option selected="selected" value="blank">{% trans "Blank" %}</option>
                     </select>
                   </div>
-                  <div class="value-container category-value">
-                    {% for zone in category.zones %}
+                  {% for zone in category.zones %}
+                    <div class="value-container category-value">
+                      <p>{% trans "Zone Name" %}</p>
+                      <input class="zone-name" type="text" placeholder="Zone name" value="{{ zone.name }}">
                       <p>{% trans "Zone ID" %}</p>
                       <input class="zone-id" type="text" placeholder="Zone ID" value="{{ zone.id }}">
-                      <p>{% trans "Zone Width (px)" %}</p>
-                      <input class="zone-width" type="number" placeholder="Width" value="{{ zone.width }}">
-                      <p>{% trans "Category Height (px)" %}</p>
-                      <input class="zone-height" type="number" placeholder="Height" value="{{ zone.height }}">
-                    {% endfor %}
-
+                    </div>
+                  {% endfor %}
                 {% endif %}
-                </div>
                 <div style="clear:both"></div>
             </div>
           {% endfor %}
