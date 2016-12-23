@@ -46,7 +46,7 @@ This XBlock is combined of three main parts: items, categories and zones. Items 
 Lorem ipsum $$zone-1$$ sit amet, consectetur adipiscing elit. Nam $$zone-2$$, eu pretium leo convallis at.
 ```
 * If the category type is "image", zone is added by double clicking on the category image. When double clicked, zone box will appear with input fields for zone id. Zone box can be resized and dragged.
-* If the If the category type is "blank", zone is marked with id, width and height which are needed to define the zone.
+* If the category type is "blank", category text is needed as well as id and name for zone.
 ** Note: Zone ID's must be unique!
 
 
