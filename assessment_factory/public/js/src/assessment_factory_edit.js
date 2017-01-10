@@ -227,6 +227,10 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
             var $el = $(this).parent().parent().find(".value-container");
             $el.empty();
 
+            if($el.length > 1){
+                $el.not(':first').remove();
+            }
+
             if(this.value == "text"){
                 if($(this).hasClass("item-type-select")){
                     $el.addClass("item-value");

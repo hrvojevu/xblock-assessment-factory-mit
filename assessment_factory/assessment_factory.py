@@ -8,6 +8,8 @@ from xblock.fields import Scope, Integer, String, Float, Dict, List, Boolean
 from xblock.fragment import Fragment
 from xblockutils.resources import ResourceLoader
 
+from .default_data import DEFAULT_DATA
+
 loader = ResourceLoader(__name__)
 
 class AssessmentFactoryXBlock(XBlock):
@@ -31,7 +33,7 @@ class AssessmentFactoryXBlock(XBlock):
 
     studio_assignment = Dict(
         display_name="Studio Assignment Dictionary",
-        default={},
+        default=DEFAULT_DATA,
         scope=Scope.settings,
         help="Dictionary containing items and categories that are set in studio."
     )
@@ -74,7 +76,6 @@ class AssessmentFactoryXBlock(XBlock):
             'has_score': self.has_score,
             'studio_assignment': self.studio_assignment
         }
-        
         frag = Fragment()
         frag.add_content(loader.render_template('/public/html/assessment_factory_edit.html', context))
         frag.add_css(self.resource_string("public/css/vendors/jquery-ui.css"))
@@ -118,7 +119,6 @@ class AssessmentFactoryXBlock(XBlock):
         self.weight = float(data.get('weight'))
         self.has_score = data.get('has_score')
         self.studio_assignment = data
-
         return {'result': 'success'}
 
     @XBlock.json_handler
