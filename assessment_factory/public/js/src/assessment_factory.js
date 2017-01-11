@@ -108,6 +108,10 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
             renderCompletionText(items, ctx.studio_assignment.categories.length * 2, ctx.current_step, last_category['name']);
         }
         renderStepsProgress(ctx.current_step, ctx.studio_assignment.categories.length * 2);
+
+        $(".item-text").css({
+            'width': $(".items-container").width() - 10
+        });
     };
 
     function checkCorrectIncorrectItems(category_id){
@@ -125,8 +129,15 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
         return items;
     };
 
+
     $(function ($) {
         renderElements(ctx);
+
+        $(window).on('resize', function(){
+            $(".item-text").css({
+                'width': $(".items-container").width() - 10
+            });
+        });
     });
 }
 

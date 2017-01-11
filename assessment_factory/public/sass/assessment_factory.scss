@@ -1,8 +1,4 @@
 @import "variables";
-.expand-container{
-		width: 100% !important;
-		max-width: 100% !important;
-	}
 
 .clearfix:after {
 	visibility: hidden;
@@ -31,10 +27,10 @@ div.assessment-factory-block{
 			color: $white;
 			text-transform: uppercase;
 			border: 1px solid $white;
-			width: 180px;
+			width: 170px;
 			text-align: center;
-			padding: 10px;
-			font-size: 22px;
+			padding: 5px;
+			font-size: 20px;
 			margin: 0 auto;
 			-webkit-transition: all 100ms linear;
 			-moz-transition: all 100ms linear;
@@ -71,13 +67,12 @@ div.assessment-factory-block{
 			}
 
 			.display-name.left{
-				font-size: 48px;
 				text-align: left;
 			}
 
 			.category-text{
-				font-size: 22px;
-				margin: 40px 0;
+				font-size: 20px;
+				margin: 20px 0;
 				font-family: $font-main;
 
 				span{
@@ -115,8 +110,7 @@ div.assessment-factory-block{
 
 		.items-container{
 			float: left;
-			width: 33%;
-			max-width: 450px;
+			width: calc(33% - 40px);
 			margin-top: 40px;
 			overflow-y: scroll;
 			height: 420px;	
@@ -127,7 +121,6 @@ div.assessment-factory-block{
 
 		.item-text{
 			width: 100%;
-			max-width: 500px;
 			margin: 10px auto;
 			padding: 5px 10px;
 			font-size: 18px;
