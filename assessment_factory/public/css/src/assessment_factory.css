@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Lora:400,700");
 @import url("https://fonts.googleapis.com/css?family=Hind:400,700");
 @import url("https://fonts.googleapis.com/css?family=Roboto");
-.expand-container {
-  width: 100% !important;
-  max-width: 100% !important; }
-
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -28,10 +24,10 @@ div.assessment-factory-block {
       color: #fff;
       text-transform: uppercase;
       border: 1px solid #fff;
-      width: 180px;
+      width: 170px;
       text-align: center;
-      padding: 10px;
-      font-size: 22px;
+      padding: 5px;
+      font-size: 20px;
       margin: 0 auto;
       -webkit-transition: all 100ms linear;
       -moz-transition: all 100ms linear;
@@ -57,11 +53,10 @@ div.assessment-factory-block {
         font-family: "Lora", serif;
         font-weight: bold; }
       div.assessment-factory-block .main-container .heading-container .display-name.left {
-        font-size: 48px;
         text-align: left; }
       div.assessment-factory-block .main-container .heading-container .category-text {
-        font-size: 22px;
-        margin: 40px 0;
+        font-size: 20px;
+        margin: 20px 0;
         font-family: "Hind", sans-serif; }
         div.assessment-factory-block .main-container .heading-container .category-text span {
           font-weight: 700; }
@@ -83,15 +78,13 @@ div.assessment-factory-block {
       background: rgba(255, 255, 255, 0.4); }
     div.assessment-factory-block .main-container .items-container {
       float: left;
-      width: 33%;
-      max-width: 450px;
+      width: calc(33% - 40px);
       margin-top: 40px;
       overflow-y: scroll;
       height: 420px;
       padding: 5px; }
     div.assessment-factory-block .main-container .item-text {
       width: 100%;
-      max-width: 500px;
       margin: 10px auto;
       padding: 5px 10px;
       font-size: 18px;

@@ -169,6 +169,9 @@ class AssessmentFactoryXBlock(XBlock):
         if min_step < self.current_step:
             self.current_step -= 1
             
+        if self.current_step == 0:
+            self.item_state = {}
+
         return {
             'display_name': self.display_name,
             'studio_assignment': self.studio_assignment,
