@@ -14,10 +14,19 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
 
     $(document).on('click', '.next-step', function(){
         if($(this).hasClass("begin") || $(".items-container").is(':empty')){
+            var data = [];
+            $('.zone-container .item').each(function () {
+                var item = {};
+                item.item_id = $(this).attr("id");
+                item.category_id = $(this).parents(".category").attr("id");
+                item.zone_id = $(this).parent().attr("id");
+                data.push(item);
+            });
+
             $.ajax({
                 type: 'POST',
                 url: runtime.handlerUrl(element, 'next_step'),
-                data: JSON.stringify(""),
+                data: JSON.stringify(data),
                 success: function(ctx){
                     renderElements(ctx);
                 }
@@ -36,23 +45,6 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
         });
     });
 
-    function submitItem(item_id, category_id, zone_id){
-        var $element = $(s.sprintf('#%s', item_id));
-        var data = {
-            item_id: item_id,
-            category_id: category_id,
-            zone_id: zone_id
-        };
-
-        $.ajax({
-            type: 'POST',
-            url: runtime.handlerUrl(element, 'submit_item'),
-            data: JSON.stringify(data),
-            success: function(data){
-            }
-        });
-    };
-
     function initDraggable(){
         $(".item").draggable({
             containment: $('.assessment-factory-block'),
@@ -67,9 +59,19 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
         $(".categories-container .zone").droppable({
             tolerance: 'touch',
             drop: function( event, ui ) {
-                var item_id = ui.draggable[0].id;
+                var data = {
+                    item_id: ui.draggable[0].id,
+                    category_id: $(event.target).parent().parent().attr('id'),
+                    zone_id: event.target.id
+                };
                 ui.draggable.detach().appendTo($(this));
-                submitItem(item_id, $(event.target).parent().parent().attr('id'), event.target.id);
+                $.ajax({
+                    type: 'POST',
+                    url: runtime.handlerUrl(element, 'submit_item'),
+                    data: JSON.stringify(data),
+                    success: function(data){  
+                    }
+                });
             }
         });
     };

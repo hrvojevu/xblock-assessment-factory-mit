@@ -83,7 +83,7 @@ function AssessmentFactoryEditBlock(runtime, element, params) {
                     }
                     item.category_id = $(this).find(".value-container .category-id").val();
                     item.zone_id = $(this).find(".value-container .zone-id").val();
-                    data.items.push(item)
+                    data.items.push(item);
                 }
                 else if($(this).hasClass("category")){
                     var category = {
