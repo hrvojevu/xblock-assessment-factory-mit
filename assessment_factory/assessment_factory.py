@@ -155,6 +155,10 @@ class AssessmentFactoryXBlock(XBlock):
         max_step = len(self.studio_assignment["categories"]*2)
         if self.current_step < max_step:
             self.current_step += 1
+
+        for item in data:
+            item_id = item.get("item_id")
+            self.item_state[item_id] = item;
             
         return {
             'display_name': self.display_name,
