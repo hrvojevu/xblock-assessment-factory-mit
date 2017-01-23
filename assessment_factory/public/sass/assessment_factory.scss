@@ -216,6 +216,7 @@ div.assessment-factory-block{
 			clear: both;
 			float: right;
 			margin-top: 40px;
+			width: 66%;
 
 			.btn{
 				float: left;
@@ -224,6 +225,31 @@ div.assessment-factory-block{
 				&:first-child{
 					margin-right: 20px;
 				}
+
+				&.disabled{
+					opacity: 0.5;
+					-webkit-transition: none;
+					-moz-transition: none;
+					-o-transition: none;
+					-ms-transition: none;
+					transition: none;
+
+					&:hover{
+						cursor: pointer;
+						background: none;
+						color: $white;
+						cursor: not-allowed;
+					}
+				}
+			}
+
+			.next-step{
+				float: right;
+			}
+
+			.submit-step{
+				margin-right: 20px;
+				float: right;
 			}
 		}
 	}

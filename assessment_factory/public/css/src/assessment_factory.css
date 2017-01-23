@@ -149,12 +149,30 @@ div.assessment-factory-block {
     div.assessment-factory-block .main-container .steps-container {
       clear: both;
       float: right;
-      margin-top: 40px; }
+      margin-top: 40px;
+      width: 66%; }
       div.assessment-factory-block .main-container .steps-container .btn {
         float: left;
         font-family: "Hind", sans-serif; }
         div.assessment-factory-block .main-container .steps-container .btn:first-child {
           margin-right: 20px; }
+        div.assessment-factory-block .main-container .steps-container .btn.disabled {
+          opacity: 0.5;
+          -webkit-transition: none;
+          -moz-transition: none;
+          -o-transition: none;
+          -ms-transition: none;
+          transition: none; }
+          div.assessment-factory-block .main-container .steps-container .btn.disabled:hover {
+            cursor: pointer;
+            background: none;
+            color: #fff;
+            cursor: not-allowed; }
+      div.assessment-factory-block .main-container .steps-container .next-step {
+        float: right; }
+      div.assessment-factory-block .main-container .steps-container .submit-step {
+        margin-right: 20px;
+        float: right; }
   div.assessment-factory-block .steps-progress-container {
     width: 100%;
     height: 7px;
