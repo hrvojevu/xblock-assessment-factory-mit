@@ -14,24 +14,12 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
 
     $(document).on('click', '.next-step', function(){
         if($(this).hasClass("begin") || $(".items-container").is(':empty')){
-            var data = [];
-            $('.zone-container .item').each(function () {
-                var item = {};
-                item.item_id = $(this).attr("id");
-                item.category_id = $(this).parents(".category").attr("id");
-                item.zone_id = $(this).parent().attr("id");
-                data.push(item);
-            });
-
-            $.ajax({
-                type: 'POST',
-                url: runtime.handlerUrl(element, 'next_step'),
-                data: JSON.stringify(data),
-                success: function(ctx){
-                    renderElements(ctx);
-                }
-            });
+            submitItems(runtime.handlerUrl(element, 'next_step'), true);
         }
+    });
+
+    $(document).on('click', '.submit-step', function(){
+        submitItems(runtime.handlerUrl(element, 'submit_items'), false);
     });
 
     $(document).on('click', '.previous-step', function(){
@@ -45,6 +33,28 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
         });
     });
 
+    function submitItems(url, next_step){
+        var data = [];
+        $('.zone-container .item').each(function () {
+            var item = {};
+            item.item_id = $(this).attr("id");
+            item.category_id = $(this).parents(".category").attr("id");
+            item.zone_id = $(this).parent().attr("id");
+            data.push(item);
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(data),
+            success: function(ctx){
+                if(next_step){
+                    renderElements(ctx);
+                } 
+            }
+        });
+    }
+
     function initDraggable(){
         $(".item").draggable({
             containment: $('.assessment-factory-block'),
@@ -55,23 +65,18 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
         });
     };
 
+    $(document).on('DOMSubtreeModified', '.items-container', function(){
+        if($(".items-container").is(':empty')){
+            $(".next-step").removeClass("disabled");
+            $(".submit-step").removeClass("disabled");
+        }
+    });
+
     function initDroppable(){
         $(".categories-container .zone").droppable({
             tolerance: 'touch',
             drop: function( event, ui ) {
-                var data = {
-                    item_id: ui.draggable[0].id,
-                    category_id: $(event.target).parent().parent().attr('id'),
-                    zone_id: event.target.id
-                };
-                ui.draggable.detach().appendTo($(this));
-                $.ajax({
-                    type: 'POST',
-                    url: runtime.handlerUrl(element, 'submit_item'),
-                    data: JSON.stringify(data),
-                    success: function(data){  
-                    }
-                });
+                ui.draggable.detach().appendTo($(this));                
             }
         });
     };
@@ -90,6 +95,11 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
             renderCategory(category, ctx.display_name); 
             renderItems(items, ctx.item_state); 
             renderStepButtons();
+            
+            if(!$(".items-container").is(':empty')){
+                $(".next-step").addClass("disabled");
+                $(".submit-step").addClass("disabled");
+            }
 
             initDraggable();
             initDroppable();
@@ -180,9 +190,11 @@ function renderStepButtons(){
     $main_container.append($steps_container);
 
     var $next_step = $("<p class='btn next-step'>Continue</p>");
+    var $submit = $("<p class='btn submit-step'>Submit</p>");
     var $previous_step = $("<p class='btn previous-step'>Back</p>");
     $steps_container.append($previous_step);
     $steps_container.append($next_step);
+    $steps_container.append($submit);
 }
 
 function renderItems(items, item_state){

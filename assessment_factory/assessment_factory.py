@@ -122,9 +122,10 @@ class AssessmentFactoryXBlock(XBlock):
         return {'result': 'success'}
 
     @XBlock.json_handler
-    def submit_item(self, data, suffix=''):
-        item_id = data.get("item_id")
-        self.item_state[item_id] = data;
+    def submit_items(self, data, suffix=''):
+        for item in data:
+            item_id = item.get("item_id")
+            self.item_state[item_id] = item;
 
         return {'result': 'success'}
 
