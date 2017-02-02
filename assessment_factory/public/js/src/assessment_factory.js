@@ -13,13 +13,22 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
     });
 
     $(document).on('click', '.next-step', function(){
-        if($(this).hasClass("begin") || $(".items-container").is(':empty')){
+        if($(this).hasClass("begin")){
             submitItems(runtime.handlerUrl(element, 'next_step'), true);
+        }
+        if(!$(this).hasClass("disabled")){
+            if($(".items-container").is(':empty')){
+                submitItems(runtime.handlerUrl(element, 'next_step'), true);
+            }
         }
     });
 
     $(document).on('click', '.submit-step', function(){
-        submitItems(runtime.handlerUrl(element, 'submit_items'), false);
+        if(!$(this).hasClass("disabled")){
+            if($(".items-container").is(':empty')){
+                submitItems(runtime.handlerUrl(element, 'next_step'), true);
+            }  
+        }
     });
 
     $(document).on('click', '.previous-step', function(){
@@ -67,7 +76,6 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
 
     $(document).on('DOMSubtreeModified', '.items-container', function(){
         if($(".items-container").is(':empty')){
-            $(".next-step").removeClass("disabled");
             $(".submit-step").removeClass("disabled");
         }
     });
@@ -96,8 +104,8 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
             renderItems(items, ctx.item_state); 
             renderStepButtons();
             
+            $(".next-step").addClass("disabled");
             if(!$(".items-container").is(':empty')){
-                $(".next-step").addClass("disabled");
                 $(".submit-step").addClass("disabled");
             }
 
@@ -113,6 +121,8 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
             renderCategory(category, ctx.display_name); 
             renderItems(items, ctx.item_state); 
             renderStepButtons();
+
+            $(".submit-step").addClass("disabled");
 
             var items = checkCorrectIncorrectItems(category['id']);
             markCorrectIncorrectItems(items);
