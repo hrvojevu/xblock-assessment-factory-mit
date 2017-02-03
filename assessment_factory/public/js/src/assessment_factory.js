@@ -16,19 +16,6 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
         if($(this).hasClass("begin")){
             submitItems(runtime.handlerUrl(element, 'next_step'), true);
         }
-        if(!$(this).hasClass("disabled")){
-            if($(".items-container").is(':empty')){
-                submitItems(runtime.handlerUrl(element, 'next_step'), true);
-            }
-        }
-    });
-
-    $(document).on('click', '.submit-step', function(){
-        if(!$(this).hasClass("disabled")){
-            if($(".items-container").is(':empty')){
-                submitItems(runtime.handlerUrl(element, 'next_step'), true);
-            }  
-        }
     });
 
     $(document).on('click', '.previous-step', function(){
@@ -109,6 +96,12 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
                 $(".submit-step").addClass("disabled");
             }
 
+            $('.submit-step').click(function(){
+                if($(".items-container").is(':empty')){
+                    submitItems(runtime.handlerUrl(element, 'next_step'), true);
+                }  
+            });
+
             initDraggable();
             initDroppable();
         }
@@ -128,6 +121,15 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
             markCorrectIncorrectItems(items);
             var last_category = ctx.studio_assignment.categories[ctx.studio_assignment.categories.length -1];
             renderCompletionText(items, ctx.studio_assignment.categories.length * 2, ctx.current_step, last_category['name']);
+
+            $('.next-step').click(function(){
+                if(ctx.current_step == 4){
+                    parent.postMessage(JSON.stringify({action:'continue'}),'*');
+                }
+                else{
+                    submitItems(runtime.handlerUrl(element, 'next_step'), true);
+                }
+            });
         }
         renderStepsProgress(ctx.current_step, ctx.studio_assignment.categories.length * 2);
 
