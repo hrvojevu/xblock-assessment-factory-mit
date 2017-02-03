@@ -286,4 +286,24 @@ div.assessment-factory-block{
 	div.assessment-factory-block .main-container .items-container{
 		height: 270px;
 	}
+	div.assessment-factory-block .main-container .steps-container .btn{
+		width: 120px;
+    	font-size: 12px;
+	}
+	div.assessment-factory-block .main-container .heading-container .display-name{
+		font-size: 28px;
+	}
+	div.assessment-factory-block .main-container .heading-container .category-text{
+		font-size: 16px;
+		margin: 15px 0;
+	}
+	div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .zone-name{
+		font-size: 16px;
+	}
+	div.assessment-factory-block .main-container .item-text{
+		font-size: 14px;
+	}
+	div.assessment-factory-block .main-container .steps-container{
+		margin-top: 20px;
+	}
 }
