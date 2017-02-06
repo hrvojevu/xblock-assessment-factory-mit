@@ -134,7 +134,7 @@ function AssessmentFactoryBlock(runtime, element, ctx) {
         renderStepsProgress(ctx.current_step, ctx.studio_assignment.categories.length * 2);
 
         $(".item-text").css({
-            'width': $(".items-container").width() - 10
+            'width': $(".items-container").width() - 20
         });
     };
 

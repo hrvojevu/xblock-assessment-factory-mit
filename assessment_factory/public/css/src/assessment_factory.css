@@ -81,7 +81,8 @@ div.assessment-factory-block {
       width: calc(33% - 40px);
       margin-top: 40px;
       overflow-y: scroll;
-      height: 420px;
+      overflow-x: hidden;
+      height: 320px;
       padding: 5px; }
     div.assessment-factory-block .main-container .item-text {
       width: 100%;
@@ -136,20 +137,21 @@ div.assessment-factory-block {
         div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .zone-name {
           padding: 5px;
           font-size: 20px;
-          color: #fff; }
+          color: #fff;
+          height: 40px; }
         div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone {
           -webkit-box-shadow: inset 0px 0px 70px 0px #684146;
           -moz-box-shadow: inset 0px 0px 70px 0px #684146;
           box-shadow: inset 0px 0px 70px 0px #684146;
           background-color: #84555b;
-          height: 400px;
+          height: 300px;
           padding: 10px;
           box-sizing: content-box;
           overflow-y: scroll; }
     div.assessment-factory-block .main-container .steps-container {
       clear: both;
       float: right;
-      margin-top: 40px;
+      margin-top: 20px;
       width: 66%; }
       div.assessment-factory-block .main-container .steps-container .btn {
         float: left;
