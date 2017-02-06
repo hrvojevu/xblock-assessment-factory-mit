@@ -113,7 +113,8 @@ div.assessment-factory-block{
 			width: calc(33% - 40px);
 			margin-top: 40px;
 			overflow-y: scroll;
-			height: 420px;	
+			overflow-x: hidden;
+			height: 320px;	
 			padding: 5px;
 
 			@extend .scrollbar;
@@ -194,6 +195,7 @@ div.assessment-factory-block{
 						padding: 5px;
 						font-size: 20px;
 						color: $white;
+						height: 40px;
 					}
 
 					.blank-zone{
@@ -201,7 +203,7 @@ div.assessment-factory-block{
 						-moz-box-shadow: inset 0px 0px 70px 0px rgba(104,65,70,1);
 						box-shadow: inset 0px 0px 70px 0px rgba(104,65,70,1);
 						background-color: $main;
-						height: 400px;
+						height: 300px;
 						padding: 10px;
 						box-sizing: content-box;
 						overflow-y: scroll;
@@ -215,7 +217,7 @@ div.assessment-factory-block{
 		.steps-container{
 			clear: both;
 			float: right;
-			margin-top: 40px;
+			margin-top: 20px;
 			width: 66%;
 
 			.btn{
