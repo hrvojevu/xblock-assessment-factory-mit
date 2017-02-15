@@ -10,6 +10,7 @@
 
 .xblock-render div.assessment-factory-block{
 	position: relative;
+	min-height: 540px;
 }
 
 div.assessment-factory-block{
@@ -24,29 +25,37 @@ div.assessment-factory-block{
 		padding: 50px 100px;
 
 		.btn{
-			color: $white;
-			text-transform: uppercase;
-			border: 1px solid $white;
-			width: 170px;
+			border: 1px solid #d2c9c9;
+			background: transparent;
+		    color: $white;
+		    text-transform: uppercase;
+		    padding: 6px 60px;
+		    cursor: pointer;
+		    text-shadow: 0 0 0;
+		    box-shadow: 0 0 0;
+		    border-radius: 0;
+		    font-size: 14px;
+		    font-family: Roboto, sans-serif;
+		    font-weight: 400;
+		    -webkit-font-smoothing: antialiased;
+		    -moz-osx-font-smoothing: grayscale;
+		    outline: none;
 			text-align: center;
-			padding: 5px;
-			font-size: 20px;
+			line-height: normal;
+			display: block;
 			margin: 0 auto;
-			-webkit-transition: all 100ms linear;
-			-moz-transition: all 100ms linear;
-			-o-transition: all 100ms linear;
-			-ms-transition: all 100ms linear;
-			transition: all 100ms linear;
 
 			&:hover{
 				cursor: pointer;
 				background-color: $white;
 				color: $black;
+				text-shadow: 0 0 0;
+			    box-shadow: 0 0 0;
 			}
-		}
 
-		.btn.begin{
-			margin-top: 50px;
+			&.begin {
+				padding: 20px 60px;
+			}
 		}
 
 		.heading-container{
@@ -54,16 +63,18 @@ div.assessment-factory-block{
 
 			.activity{
 				text-align: center;
-				font-size: 20px;
+				font-size: 14px;
+				font-family: $font-main;
 				text-transform: uppercase;
 				text-decoration: underline;
+				margin: 0;
 			}
 
 			.display-name{
-				font-size: 40px;
+				font-size: 36px;
 				text-align: center;
 				font-family: $font-serif;
-				font-weight: bold;
+				margin: 30px 0 35px;
 			}
 
 			.display-name.left{
@@ -82,7 +93,10 @@ div.assessment-factory-block{
 		}
 
 		.heading-container.begining{
-			margin-top: 300px;
+			position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%)
 		}
 		
 		.scrollbar{

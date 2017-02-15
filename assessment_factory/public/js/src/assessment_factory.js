@@ -285,7 +285,7 @@ function renderFirstStep(display_name){
     var $container = $('<div class="heading-container begining"></div>');
     var $activity = $("<p class='activity'>Activity</p>")
     var $display_name = $('<p class="display-name">' + display_name + '</p>');
-    var $continue_btn = $("<div class='btn next-step begin'>Begin</div>");
+    var $continue_btn = $("<button class='btn next-step begin'>Begin</button>");
     $(".main-container").empty();
     $(".main-container").append($container);
     $container.append($activity);

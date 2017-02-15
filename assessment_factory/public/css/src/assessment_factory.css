@@ -9,7 +9,8 @@
   height: 0; }
 
 .xblock-render div.assessment-factory-block {
-  position: relative; }
+  position: relative;
+  min-height: 540px; }
 
 div.assessment-factory-block {
   background: url("https://s3.amazonaws.com/mit-cre-assets/background_images/dnd_background_overlay.jpg");
@@ -21,37 +22,47 @@ div.assessment-factory-block {
   div.assessment-factory-block .main-container {
     padding: 50px 100px; }
     div.assessment-factory-block .main-container .btn {
+      border: 1px solid #d2c9c9;
+      background: transparent;
       color: #fff;
       text-transform: uppercase;
-      border: 1px solid #fff;
-      width: 170px;
+      padding: 6px 60px;
+      cursor: pointer;
+      text-shadow: 0 0 0;
+      box-shadow: 0 0 0;
+      border-radius: 0;
+      font-size: 14px;
+      font-family: Roboto, sans-serif;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      outline: none;
       text-align: center;
-      padding: 5px;
-      font-size: 20px;
-      margin: 0 auto;
-      -webkit-transition: all 100ms linear;
-      -moz-transition: all 100ms linear;
-      -o-transition: all 100ms linear;
-      -ms-transition: all 100ms linear;
-      transition: all 100ms linear; }
+      line-height: normal;
+      display: block;
+      margin: 0 auto; }
       div.assessment-factory-block .main-container .btn:hover {
         cursor: pointer;
         background-color: #fff;
-        color: #3c3c3c; }
-    div.assessment-factory-block .main-container .btn.begin {
-      margin-top: 50px; }
+        color: #3c3c3c;
+        text-shadow: 0 0 0;
+        box-shadow: 0 0 0; }
+      div.assessment-factory-block .main-container .btn.begin {
+        padding: 20px 60px; }
     div.assessment-factory-block .main-container .heading-container {
       color: #fff; }
       div.assessment-factory-block .main-container .heading-container .activity {
         text-align: center;
-        font-size: 20px;
+        font-size: 14px;
+        font-family: "Hind", sans-serif;
         text-transform: uppercase;
-        text-decoration: underline; }
+        text-decoration: underline;
+        margin: 0; }
       div.assessment-factory-block .main-container .heading-container .display-name {
-        font-size: 40px;
+        font-size: 36px;
         text-align: center;
         font-family: "Lora", serif;
-        font-weight: bold; }
+        margin: 30px 0 35px; }
       div.assessment-factory-block .main-container .heading-container .display-name.left {
         text-align: left; }
       div.assessment-factory-block .main-container .heading-container .category-text {
@@ -61,7 +72,10 @@ div.assessment-factory-block {
         div.assessment-factory-block .main-container .heading-container .category-text span {
           font-weight: 700; }
     div.assessment-factory-block .main-container .heading-container.begining {
-      margin-top: 300px; }
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
     div.assessment-factory-block .main-container .scrollbar::-webkit-scrollbar, div.assessment-factory-block .main-container .items-container::-webkit-scrollbar, div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone::-webkit-scrollbar {
       width: 10px; }
     div.assessment-factory-block .main-container .scrollbar::-webkit-scrollbar-track, div.assessment-factory-block .main-container .items-container::-webkit-scrollbar-track, div.assessment-factory-block .main-container .categories-container .category-blank .zone-container .blank-zone::-webkit-scrollbar-track {
